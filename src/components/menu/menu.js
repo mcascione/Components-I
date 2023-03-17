@@ -1,4 +1,4 @@
-import './menu.less'
+import'./menu.less'
 
 // This is the data we will be using, study it but don't change anything, yet.
 let menuItems = [
@@ -9,6 +9,35 @@ let menuItems = [
   'Music',
   'Log Out'
 ];
+
+function menuMaker(menuArr){
+  const menuWrapper = document.createElement('div');
+  const menuList = document.createElement('ul');
+
+  menuWrapper.appendChild(menuList);
+  menuWrapper.classList.add('menu');
+  
+  menuArr.forEach(menu => {
+    const menuItem = document.createElement('li');
+    menuItem.textContent = menu;
+    menuList.appendChild(menuItem);
+  })
+
+  const menuButton = document.querySelector('.menu-button');
+
+  menuButton.addEventListener('click', () => {
+    menuWrapper.classList.toggle('menu--open');
+  })
+
+  return menuWrapper;
+}
+
+menuMaker(menuItems);
+
+document
+  .querySelector('.header')
+  .appendChild(menuMaker(menuItems));
+
 
 /*
   Step 1: Write a component called 'menuMaker' to create a menu like the markup below:
